@@ -163,42 +163,33 @@ bool CompilerWrapper::exportCPP(
     const std::string& faust_dspdir, 
     const std::string &filename, 
     const std::string& dspCode, 
-    const std::string& filepath, 
+    const std::string& filedir, 
     bool doublePrecision,
     std::string& errorMessage)
 {
 
-    llvm_dsp_factory* fct;
-
     std::vector<const char*> args { 
         "-I", faust_dspdir.c_str(),
-        "-lang", "cpp", 
-        "-json"
+        "-lang", "cpp" 
+        "-o", filedir.c_str()
     };
     if (doublePrecision)
         args.push_back("-double");
     int argc = args.size();
     const char** argv = args.data();
 
-    fct = createDSPFactoryFromString(
+    bool success = generateAuxFilesFromString(
         filename,
         dspCode,
         argc,
         argv,
-        "",
-        errorMessage,
-        -1
+        errorMessage
     );
 
-    if (!fct) 
+    if (!success) 
     {
-        std::cerr << "Faust compilation failed : " << errorMessage << std::endl;
+        std::cerr << "Faust C++ export failed: " << errorMessage << std::endl;
         return false;
     }
-
-    writeDSPFactoryToBitcodeFile(fct, filepath);
-    
-    deleteDSPFactory(fct);
-
     return true;
 }

@@ -172,7 +172,7 @@ bool PluginLoader::buildPlugin(
     return result;
 }
 
-bool PluginLoader::exportCPP(const std::string &filename, const std::string& dspCode, const std::string& filepath, bool doublePrecision, std::string& errorMessage)
+bool PluginLoader::exportCPP(const std::string &filename, const std::string& dspCode, const std::string& filedir, bool doublePrecision, std::string& errorMessage)
 {
-   return faustCompiler.exportCPP(cfg.path.faust_dspdir, filename, dspCode, filepath, doublePrecision, errorMessage);
+   return faustCompiler.exportCPP(cfg.path.faust_dspdir, filename, dspCode, filedir, doublePrecision, errorMessage);
 }

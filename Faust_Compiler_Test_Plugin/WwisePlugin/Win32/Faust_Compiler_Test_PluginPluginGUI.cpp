@@ -567,13 +567,12 @@ void Faust_Compiler_Test_PluginPluginGUI::OnExportClicked()
 		std::filesystem::create_directory( std::filesystem::path(storeDir));
 
 		// export cpp
-		std::string cppfilePath = storeDir + '/' + filename + ".cpp";
 		bool doublePrecision = (SendMessage(GetDlgItem(faustWnd,IDC_CHECK_DOUBLE_PRECISION),BM_GETCHECK, 0, 0) == BST_CHECKED);
 		std::string errorMessage;
 		bool cppExported = faustPluginLoader.exportCPP(
 			filename,
 			PluginUtils::wstring2string(dspCode),
-			cppfilePath,
+			storeDir,
 			doublePrecision,
 			errorMessage
 		);

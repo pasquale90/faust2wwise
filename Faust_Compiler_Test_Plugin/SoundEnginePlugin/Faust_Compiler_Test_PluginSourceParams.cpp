@@ -53,7 +53,7 @@ AKRESULT Faust_Compiler_Test_PluginSourceParams::Init(AK::IAkPluginMemAlloc* in_
     if (in_ulBlockSize == 0)
     {
         // Initialize default parameters here
-        RTPC.fDuration = 0.0f;
+        RTPC.fDuration = 10.0f;
         m_paramChangeHandler.SetAllParamChanges();
         return AK_Success;
     }

@@ -49,7 +49,7 @@ public:
     FAUSTFLOAT getParameter(const std::string& name);
 
     /* Compiles dsp code and store its cpp output into a file on disk. */
-    bool exportCPP(const std::string& faust_dspdir, const std::string &filename, const std::string& dspCode, const std::string& filepath, bool doublePrecision, std::string& errorMessage);
+    bool exportCPP(const std::string& faust_dspdir, const std::string &filename, const std::string& dspCode, const std::string& filedir, bool doublePrecision, std::string& errorMessage);
 
 private:
 
